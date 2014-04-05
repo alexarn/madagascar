@@ -1,44 +1,39 @@
-#!/bin/bash
+#!/usr/bin/python3
+#!/usr/bin/python
 
-#make some temporary files
-command_output=$(mktemp)
-menu_config=$(mktemp)
-menu_output=$(mktemp)
+import urwid
+from subprocess import call, Popen, PIPE
 
-# command_output="command_output"
-# menu_config="menu_config"
-# menu_output="menu_output"
+def menu(title, choices):
+    body = [urwid.Text(title), urwid.Divider()]
+    for c in sorted(choices.keys()):
+        button = urwid.Button(choices[c])
+        urwid.connect_signal(button, 'click', item_chosen, c)
+        body.append(urwid.AttrMap(button, None, focus_map='reversed'))
+    return urwid.ListBox(urwid.SimpleFocusListWalker(body))
 
-#make sure the temporary files are removed even in case of interruption
-trap "rm $command_output;
-      rm $menu_output;
-      rm $menu_config;" SIGHUP SIGINT SIGTERM
-
-#replace ls with what you want
-wemux l | tail -n +2 >$command_output
-
-#build a dialog configuration file
-cat $command_output |
-  awk '{print NR " \"" $0 "\""}' |
-  tr "\n" " " >$menu_config
-
-#launch the dialog, get the output in the menu_output file
-dialog --no-cancel --title "Who says a penguin can't fly ?" \
-       --menu "Welcome on board" 0 0 0 \
-       --file $menu_config 2>$menu_output
-
-menu_item=$(cat $menu_output)
-
-#recover the associated line in the output of the command
-entry=$(cat $command_output |grep $menu_item|cut -d " " -f 4)
-
-#replace echo with whatever you want to process the chosen entry
-wemux j $entry
+def item_chosen(button, choice):
+    call(['wemux', 'j', choice])
+    call(['wemux', 'rogue'])
+    raise urwid.ExitMainLoop()
 
 
-#clean the temporary files
-[ -f $command_output ] && rm $command_output
-[ -f $menu_output ] && rm $menu_output
-[ -f $menu_config ] && rm $menu_config
+servers = {}
+for line in Popen(['wemux', 'l'], stdout=PIPE).stdout.readlines()[1::]:
+    server_name = line.decode().split()[1]
+    
+    users = []
+    for client_description in Popen(['tmux', '-S', '/tmp/wemux-'+str(server_name), 'list-clients'], stdout=PIPE).stdout.readlines():
+        users.append(client_description.split()[1].decode().split('-')[1])
 
-wemux rogue
+    servers[server_name] = server_name.ljust(10) + (' [' + ','.join(users) + '] ').ljust(20) + ' http://bit.ly/bokeh-' + server_name
+
+
+
+
+main = urwid.Padding(menu('Who says penguins can\'t fly?', servers), left=2, right=2)
+top = urwid.Overlay(main, urwid.SolidFill(u'\N{MEDIUM SHADE}'),
+    align='center', width=('relative', 60),
+    valign='middle', height=('relative', 60),
+    min_width=20, min_height=9)
+urwid.MainLoop(top, palette=[('reversed', 'standout', '')]).run()
