@@ -24,7 +24,7 @@ class DatabasesCronScript {
 		
 	public function update_database($db_name) {
 		$filename=$db_name.'_'.date("Ymd").'_backup.sql.gz';
-		execd('scp '.$this->user.'@'.$this->server_ip.':'.
+		exec('scp '.$this->user.'@'.$this->server_ip.':'.
 					$this->path.$filename.' '.$this->tmp_dir.
 					' && zcat '.$this->tmp_dir.$filename.
 					'|mysql -uroot -proot '.$db_name);
@@ -33,7 +33,8 @@ class DatabasesCronScript {
 }
 
 
-$names = ["astrolabe","calice68","casqy","chatre","lagorgue","fiep","derval2","bibliossimo",
+$names = ["astrolabe","calice68","bucarest",
+					"casqy","chatre","lagorgue","fiep","derval2","bibliossimo",
 					"bibliosud","stomer","balaruc","getigne","blreine","hgoulaine",
 					"irigny","clayette","nouvion","limours","machecoul","clermont",
 					"paray","pdutouch","roissyenbrie","saintjeanleblanc","stpryve",
@@ -58,7 +59,7 @@ $names = ["astrolabe","calice68","casqy","chatre","lagorgue","fiep","derval2","b
 					"talence","biblibre","ambares","bron","BronTest","hazebrouk","luce",
 					"maze","migennes","montrouge","nangis","bonnefonds","villeveque",
 					"voiron","voreppe","viry","yonne"];
-
+$names=["bucarest"];
 $user="mysql";
 $server_ip="172.16.77.250";
 $path="isamdb/";
