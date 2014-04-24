@@ -1,0 +1,13 @@
+---
+- hosts: bokehlocaux
+  user: webmaster
+  tasks:
+    - name: test connection
+      shell: more upgrade-opac.sh
+
+- hosts: moulins
+  user: root
+  tasks:
+    - name: test connection
+      shell: vzctl enter 952
+      shell: more upgrade-opac.sh

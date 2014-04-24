@@ -23,7 +23,7 @@ class DatabasesCronScript {
 	}
 		
 	public function update_database($db_name) {
-		$filename=$db_name.'_'.date("Ymd").'_backup.sql.gz';
+		$filename=$db_name.'_'.date("Ymd").'_OPAC3_MyISAM_backup.sql.gz';
 		exec('scp '.$this->user.'@'.$this->server_ip.':'.
 					$this->path.$filename.' '.$this->tmp_dir.
 					' && zcat '.$this->tmp_dir.$filename.
@@ -60,8 +60,8 @@ $names = ["astrolabe","calice68","bucarest",
 					"maze","migennes","montrouge","nangis","bonnefonds","villeveque",
 					"voiron","voreppe","viry","yonne"];
 $names=["bucarest"];
-$user="mysql";
-$server_ip="172.16.77.250";
+$user="backup";
+$server_ip="172.16.77.60";
 $path="isamdb/";
 
 (new DatabasesCronScript($user,$server_ip,$path))->clean_backup_files()->update_all_databases($names);
