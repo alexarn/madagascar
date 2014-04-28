@@ -2,8 +2,11 @@
 - hosts: bokehlocaux
   user: webmaster
   tasks:
-    - name: test connection
-      shell: cat upgrade-opac.sh
+    - name: copy upgrade-opac.sh
+      copy: src=upgrade-opac.sh dest=~/upgrade-opac.sh
+    
+    - name: upgrade opac
+      shell: sh upgrade-opac.sh
 
 
 - hosts: moulins
