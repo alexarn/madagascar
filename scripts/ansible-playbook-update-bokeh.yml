@@ -1,0 +1,18 @@
+---
+- hosts: bokehlocaux
+  user: webmaster
+  tasks:
+    - name: copy upgrade-opac.sh
+      copy: src=upgrade-opac.sh dest=~/upgrade-opac.sh
+    
+    - name: upgrade opac
+      shell: sh upgrade-opac.sh
+
+
+- hosts: moulins
+  user: root
+  tasks:
+    - name: test connection
+      shell: /root/upgrade-opac.sh
+
+
