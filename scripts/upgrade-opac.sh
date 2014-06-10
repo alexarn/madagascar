@@ -17,7 +17,7 @@ for dir in $directories
 do
 	echo "patch: $dir"
 	cd $dir 
-	php php/util_patch_sgbd.php sysadm sysadm
+	php php/upgrade_db.php
 done
 
              

@@ -1,4 +1,4 @@
-[bokehlocaux]
+[interns]
 # Astrolabe 
 172.16.77.43
 # Institut Francais Roumanie
@@ -8,6 +8,6 @@
 # serveur mutu
 172.16.77.31
 
-[moulins]
+[externs]
 mediatheques.agglo-moulins.fr
 128.127.138.85:2222

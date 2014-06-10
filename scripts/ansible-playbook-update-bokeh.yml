@@ -1,5 +1,5 @@
 ---
-- hosts: bokehlocaux
+- hosts: interns
   user: webmaster
   tasks:
     - name: copy upgrade-opac.sh
@@ -9,7 +9,7 @@
       shell: sh upgrade-opac.sh
 
 
-- hosts: moulins
+- hosts: externs
   user: root
   tasks:
     - name: test connection
