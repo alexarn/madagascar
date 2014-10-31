@@ -1,0 +1,14 @@
+---
+- hosts: interns
+  user: webmaster
+  tasks:
+    - name: copy multi-bosh.sh
+      copy: src=multi-bosh.sh dest=~/multi-bosh.sh
+
+    - name: launch bosh
+      command: sh ./multi-bosh.sh export-profils
+      register: log
+  
+    - debug: var=log.stdout_lines
+
+
