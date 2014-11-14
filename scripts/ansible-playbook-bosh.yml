@@ -5,8 +5,11 @@
     - name: copy multi-bosh.sh
       copy: src=multi-bosh.sh dest=~/multi-bosh.sh
 
+    - name: copy test.php
+      copy: src=test.php dest=/var/www/html/vhosts/opac2/www/php/test.php
+
     - name: launch bosh
-      command: sh ./multi-bosh.sh export-profils
+      command: bash ./multi-bosh.sh "/var/www/html/vhosts/opac2/www/php/bosh/bosh.php" "/var/www/html/vhosts/opac2/www/htdocs" "/var/www/html/vhosts/opac2/www/php/test.php"
       register: log
   
     - debug: var=log.stdout_lines
