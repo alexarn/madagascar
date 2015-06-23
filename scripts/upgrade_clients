@@ -1,0 +1,6 @@
+#! /bin/bash
+set -e
+bash dump_db astrolabe
+bash dump_db ccbs
+bash dump_db ramuz
+bash dump_db loireforez
