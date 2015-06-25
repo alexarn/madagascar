@@ -27,6 +27,12 @@ foreach (Class_Profil::findAll() as $page) {
 	removeRandomKioskConfig($page);
 }
 
+foreach(Class_IntBib::findAll() as $int_bib){
+	$int_bib->setCommParams([])
+					->setCommSigb(0)
+					->save();
+}
+
 
 
 ?>
