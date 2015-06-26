@@ -40,6 +40,7 @@ php checkByUrls.php $bokeh_url
 printf "\nGo to development\n"
 touch $client_dir/development
 bash $deploy_dir/restore-blessed.sh $client_dir
+bash $deploy_dir/70-to-72.sh $client_dir
 
 
 printf "\nPique for development: $bokeh_url\n"
