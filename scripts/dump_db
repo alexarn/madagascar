@@ -5,3 +5,5 @@ mysql -uroot -proot -e "drop database if exists $1; create database $1;"
 
 wget -O /tmp/$1.sql.gz http://172.16.77.252/backup/MySQL/Opac3/Daily/`date +%d-%m-%Y`/$1_`date +%Y%m%d`_OPAC3_MyISAM_backup.sql.gz
 zcat /tmp/$1.sql.gz |mysql -uroot -proot $1 
+echo "dump completed"
+
