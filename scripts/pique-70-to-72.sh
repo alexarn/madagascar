@@ -7,7 +7,7 @@ fi
     
 
 exec_path="$( cd "$( dirname "$0" )" && pwd )"
-client_dir=$1
+client_dir=`pwd`/$1
 deploy_dir="/var/www/html/vhosts/opac2/www/htdocs/opac-deploy/"
 pique_dir="/var/www/html/vhosts/opac2/www/htdocs/pique/"
 client_basename="$( basename "$client_dir" )"
