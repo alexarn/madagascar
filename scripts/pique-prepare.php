@@ -2,7 +2,7 @@
 require 'console.php';
 
 
-function removeRandomKioskConfigForModule($config) {
+function removeRandomKioskConfig($config) {
 	if ('KIOSQUE' !== $config['type_module'])
 		return $config;
 
@@ -12,11 +12,22 @@ function removeRandomKioskConfigForModule($config) {
 }
 
 
-function removeRandomKioskConfig($page) {
+function removeRandomArticleConfig($config) {
+	if ('NEWS' !== $config['type_module'])
+		return $config;
+
+	$config['preferences']['display_order'] = 'DateCreationDesc';
+	$config['preferences']['nb_aff'] = 2;
+	return $config;
+}
+
+
+
+function removeRandomModuleConfig($page) {
 	$cfg_accueil = $page->getCfgAccueilAsArray();
 
 	foreach($cfg_accueil['modules'] as $index => $config) {
-		$cfg_accueil['modules'][$index] = removeRandomKioskConfigForModule($config);
+		$cfg_accueil['modules'][$index] = removeRandomArticleConfig(removeRandomKioskConfig($config));
 	}
 
 	$page->setCfgAccueil($cfg_accueil)->save();
@@ -24,7 +35,7 @@ function removeRandomKioskConfig($page) {
 
 
 foreach (Class_Profil::findAll() as $page) {
-	removeRandomKioskConfig($page);
+	removeRandomModuleConfig($page);
 }
 
 foreach(Class_IntBib::findAll() as $int_bib){
