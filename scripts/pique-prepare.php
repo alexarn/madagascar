@@ -45,5 +45,8 @@ foreach(Class_IntBib::findAll() as $int_bib){
 }
 
 
+Class_AdminVar::set('CNIL_CONSENT_ENABLE', 0);
+
+
 
 ?>
