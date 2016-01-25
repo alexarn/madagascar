@@ -8,6 +8,10 @@
 # rcm-enligne.fr
 172.16.77.47
 
+[minimals]
+# mutu srv2
+172.16.77.32
+
 [externs]
 mediatheques.agglo-moulins.fr
 #yonne

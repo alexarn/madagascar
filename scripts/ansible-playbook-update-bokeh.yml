@@ -8,6 +8,14 @@
     - name: upgrade opac
       shell: sh upgrade-opac.sh
 
+- hosts: minimals
+  user: webmaster
+  tasks:
+    - name: copy upgrade-opac-minimal.sh
+      copy: src=upgrade-opac-minimal.sh dest=~/upgrade-opac-minimal.sh
+    
+    - name: upgrade opac minimal
+      shell: sh upgrade-opac-minimal.sh
 
 - hosts: externs
   user: root
