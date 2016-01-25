@@ -5,14 +5,14 @@
 172.16.77.53
 # serveur mutu
 172.16.77.31
-# mutu newopac
-172.16.77.85
 # rcm-enligne.fr
 172.16.77.47
 
 [minimals]
 # mutu srv2
 172.16.77.32
+# mutu newopac
+172.16.77.85
 
 [externs]
 mediatheques.agglo-moulins.fr
