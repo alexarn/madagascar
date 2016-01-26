@@ -11,8 +11,10 @@
 [minimals]
 # mutu srv2
 172.16.77.32
-# mutu newopac
+# mutu newopac-1
 172.16.77.85
+# mutu newopac-2
+172.16.77.86
 
 [externs]
 mediatheques.agglo-moulins.fr
