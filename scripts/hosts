@@ -7,8 +7,6 @@
 172.16.77.31
 # rcm-enligne.fr
 172.16.77.47
-# nginx
-172.16.77.83
 
 [minimals]
 # mutu srv2
@@ -17,6 +15,8 @@
 172.16.77.85
 # mutu newopac-2
 172.16.77.86
+# nginx
+172.16.77.83
 
 [externs]
 mediatheques.agglo-moulins.fr
