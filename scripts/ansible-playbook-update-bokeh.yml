@@ -6,7 +6,7 @@
       copy: src=upgrade-opac.sh dest=~/upgrade-opac.sh
     
     - name: upgrade opac
-      shell: sh upgrade-opac.sh
+      shell: bash upgrade-opac.sh
 
 - hosts: minimals
   user: webmaster
@@ -15,32 +15,32 @@
       copy: src=upgrade-opac-minimal.sh dest=~/upgrade-opac-minimal.sh
     
     - name: upgrade opac minimal
-      shell: sh upgrade-opac-minimal.sh
+      shell: bash upgrade-opac-minimal.sh
 
 - hosts: externs
   user: root
   tasks:
     - name: upgrade externs
-      shell: /root/upgrade-opac.sh
+      shell: bash /root/upgrade-opac.sh
 
 
 - hosts: externs_afi_with_key
   user: afi
   tasks:
     - name: afi with key
-      shell: sh upgrade-opac.sh
+      shell: bash upgrade-opac.sh
 
 - hosts: externs_webmaster_with_key
   user: webmaster
   tasks:
     - name: webmaster with key
-      shell: sh upgrade-opac.sh
+      shell: bash upgrade-opac.sh
 
 
 - hosts: externs_exploit_with_key
   user: exploit
   tasks:
     - name: exploit with key
-      shell: sh upgrade-opac.sh
+      shell: bash upgrade-opac.sh
 
 
