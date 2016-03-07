@@ -22,7 +22,23 @@
 mediatheques.agglo-moulins.fr
 #yonne
 128.127.138.85:2222
-#valence
-109.69.193.75
+
+
+[externs_afi_with_key]
+#digne
+217.128.36.177
 #clichy
 80.11.251.207:2211
+#miop prod
+87.252.12.96
+
+
+[externs_webmaster_with_key]
+#miop test
+psk12122.oxyd.net
+
+
+[externs_exploit_with_key]
+#valence
+109.69.193.75
+

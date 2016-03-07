@@ -20,7 +20,27 @@
 - hosts: externs
   user: root
   tasks:
-    - name: test connection
+    - name: upgrade externs
       shell: /root/upgrade-opac.sh
+
+
+- hosts: externs_afi_with_key
+  user: afi
+  tasks:
+    - name: afi with key
+      shell: sh upgrade-opac.sh
+
+- hosts: externs_webmaster_with_key
+  user: webmaster
+  tasks:
+    - name: webmaster with key
+      shell: sh upgrade-opac.sh
+
+
+- hosts: externs_exploit_with_key
+  user: exploit
+  tasks:
+    - name: exploit with key
+      shell: sh upgrade-opac.sh
 
 
