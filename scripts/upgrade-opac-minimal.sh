@@ -3,4 +3,7 @@ cd ~/www/php/
 git pull --rebase
 source ./install.sh
 
-sudo /etc/init.d/httpd restart
+if [ -f "/etc/init.d/httpd" ]
+then
+  sudo /etc/init.d/httpd restart
+fi
