@@ -1,0 +1,22 @@
+---
+- hosts: interns
+  user: webmaster
+  tasks:
+    - name: branch on interns
+      stat: path="~/www/htdocs/{{ directory }}"
+      register: st
+    - shell: cd www/php && bash restore-blessed.sh ~/www/htdocs/{{ directory }}
+      when: st.stat.exists
+    - debug: msg="~/www/htdocs/{{ directory }} does not exist here"
+      when: not st.stat.exists
+
+- hosts: minimals
+  user: webmaster
+  tasks:
+    - name: branch on minimals
+      stat: path="~/www/htdocs/{{ directory }}"
+      register: st
+    - shell: cd www/php && bash restore-blessed.sh ~/www/htdocs/{{ directory }}
+      when: st.stat.exists
+    - debug: msg="~/www/htdocs/{{ directory }} does not exist here"
+      when: not st.stat.exists
