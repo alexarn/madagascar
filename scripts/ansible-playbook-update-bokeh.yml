@@ -43,4 +43,8 @@
     - name: exploit with key
       shell: bash upgrade-opac.sh
 
+- hosts: online
+  tasks:
+    - name: online
+      shell: bash ~/www/batch/upgrade-opac.sh
 
