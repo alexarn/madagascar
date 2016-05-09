@@ -1,4 +1,4 @@
-Update All Bokeh (except CASQY / YONNE / MOULINS)
+Update All Bokeh (except CASQY)
 
 shell:
 git clone madagascar
