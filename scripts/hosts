@@ -1,16 +1,6 @@
 [interns]
-# Astrolabe 
-172.16.77.43
-# Calice68
-172.16.77.53
-# serveur mutu
-172.16.77.31
-# rcm-enligne.fr
-172.16.77.47
 
 [minimals]
-# mutu srv2
-172.16.77.32
 # mutu newopac-1
 172.16.77.85
 # mutu newopac-2
