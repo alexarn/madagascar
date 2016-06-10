@@ -1,12 +1,14 @@
 [interns]
-
-[minimals]
 # mutu newopac-1
 172.16.77.85
+
+
+[minimals]
 # mutu newopac-2
 172.16.77.86
 # nginx
 172.16.77.83
+
 
 [externs]
 mediatheques.agglo-moulins.fr
@@ -31,6 +33,7 @@ mediatheques.agglo-moulins.fr
 [externs_exploit_with_key]
 #valence
 109.69.193.75
+
 
 [online]
 bokeh-master
