@@ -45,6 +45,9 @@
 
 - hosts: online
   tasks:
-    - name: online
+    - name: copy upgrade-opac-online.sh
+      copy: src=upgrade-opac-online.sh dest=~/www/batch/upgrade-opac.sh
+
+    - name: upgrade online
       shell: bash ~/www/batch/upgrade-opac.sh
 
