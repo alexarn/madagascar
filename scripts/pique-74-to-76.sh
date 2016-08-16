@@ -1,7 +1,7 @@
 #!/bin/env bash
 
 if [ -z $1 ]; then
-    printf "\nNo path given !\n"
+    echo "\nNo path given !\n"
     exit 1
 fi
     
@@ -13,34 +13,33 @@ pique_dir="/var/www/html/vhosts/opac2/www/htdocs/pique/"
 client_basename="$( basename "$client_dir" )"
 bokeh_url="http://wip.pergame.net/$client_basename"
 
-dbname=`sed -n "s/sgbd.config.dbname *= *\([^ ]\)/\1/p" $client_dir/config.ini`
+dbname=`sed -n "s/sgbd.config.dbname *= *\([^[:space:]]\)/\1/p" $client_dir/config.ini|tr -d '\r'`
 
 function piqueOnStable() {
-    printf "\nRemove pique screenshots\n"
+    echo "Remove pique screenshots"
     rm -rf $pique_dir/temp/*$client_basename*
 
-    printf "\nGo to stable\n"
+    echo "Go to stable"
     rm $client_dir/development
 
     bash $deploy_dir/restore-blessed.sh $client_dir
+    echo "Dump database: ${dbname} et."
+    bash $exec_path/dump_db ${dbname}
 
-    printf "\nDump database: $dbname \n"
-    bash $exec_path/dump_db $dbname
 
-
-    printf "\nPrepare for pique\n"
+    echo "Prepare for pique"
     cd $client_dir
     php $exec_path/pique-prepare.php
 
 
-    printf "\nPique for stable: $bokeh_url\n"
+    echo "Pique for stable: $bokeh_url"
     cd $pique_dir
     php checkByUrls.php $bokeh_url
 }
 
 
 function piqueOnDevelopment() {
-    printf "\nGo to development\n"
+    echo "Go to development"
     touch $client_dir/development
     bash $deploy_dir/restore-blessed.sh $client_dir
     cd $client_dir
@@ -48,7 +47,7 @@ function piqueOnDevelopment() {
     php $deploy_dir/bokeh-development/scripts/upgrade_db.php
     php $exec_path/pique-prepare.php
 
-    printf "\nPique for development: $bokeh_url\n"
+    echo "Pique for development: $bokeh_url"
     cd $pique_dir
     php checkByUrls.php $bokeh_url
 }
@@ -57,9 +56,9 @@ function piqueOnDevelopment() {
 piqueOnStable
 piqueOnDevelopment
 
-printf "\nInstall Pique navigation\n"
+echo "Install Pique navigation"
 cp $pique_dir/index.php $pique_dir/temp/
 cd $pique_dir/temp/
 bash ../thumbnailize.sh
 
-printf "\nFinished. Visit: http://sandbox.pergame.net/pique/temp\n"
+echo "Finished. Visit: http://sandbox.pergame.net/pique/temp"
