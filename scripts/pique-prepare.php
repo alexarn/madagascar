@@ -3,7 +3,7 @@ require 'console.php';
 
 
 function removeRandomKioskConfig($config) {
-	if ('KIOSQUE' !== $config['type_module'])
+	if (isset($config['type_module']) && ('KIOSQUE' !== $config['type_module']))
 		return $config;
 
 	$config['preferences']['aleatoire'] = 0;
@@ -13,14 +13,13 @@ function removeRandomKioskConfig($config) {
 
 
 function removeRandomArticleConfig($config) {
-	if ('NEWS' !== $config['type_module'])
+	if (isset($config['type_module']) && ('NEWS' !== $config['type_module']))
 		return $config;
 
 	$config['preferences']['display_order'] = 'DateCreationDesc';
 	$config['preferences']['nb_aff'] = 2;
 	return $config;
 }
-
 
 
 function removeRandomModuleConfig($page) {
@@ -46,7 +45,4 @@ foreach(Class_IntBib::findAll() as $int_bib){
 
 
 Class_AdminVar::set('CNIL_CONSENT_ENABLE', 0);
-
-
-
 ?>
