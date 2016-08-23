@@ -4,6 +4,14 @@ cd ~/www/php/
 git pull --rebase
 ./install.sh
 
+cd bokeh-stable
+echo "archiving stable"
+tar -czf ~/www/htdocs-mutu/bokeh-library-portal.org/userfiles/bokeh-stable.tgz --exclude-vcs --exclude=*/local.php --exclude=*/config.{php,ini} --totals .
+cd ../bokeh-development
+echo "archiving development"
+tar -czf ~/www/htdocs-mutu/bokeh-library-portal.org/userfiles/bokeh-development.tgz --exclude-vcs --exclude=*/local.php --exclude=*/config.{php,ini} --totals .
+cd ..
+
 ### Màj des Bokeh dédiés ###
 #
 directories=$(find  -P ~/www/htdocs-dedi/  -maxdepth 2 -type d -path "*/cosmogramme")
