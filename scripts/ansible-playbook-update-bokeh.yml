@@ -1,4 +1,13 @@
 ---
+- hosts: online
+  tasks:
+    - name: copy upgrade-opac-online.sh
+      copy: src=upgrade-opac-online.sh dest=~/www/batch/upgrade-opac.sh
+
+    - name: upgrade online
+      shell: bash ~/www/batch/upgrade-opac.sh
+
+
 - hosts: interns
   user: webmaster
   tasks:
@@ -8,6 +17,7 @@
     - name: upgrade opac
       shell: bash upgrade-opac.sh
 
+
 - hosts: minimals
   user: webmaster
   tasks:
@@ -16,6 +26,7 @@
     
     - name: upgrade opac minimal
       shell: bash upgrade-opac-minimal.sh
+
 
 - hosts: externs
   user: root
@@ -30,6 +41,7 @@
     - name: afi with key
       shell: bash upgrade-opac.sh
 
+
 - hosts: externs_webmaster_with_key
   user: webmaster
   tasks:
@@ -42,12 +54,3 @@
   tasks:
     - name: exploit with key
       shell: bash upgrade-opac.sh
-
-- hosts: online
-  tasks:
-    - name: copy upgrade-opac-online.sh
-      copy: src=upgrade-opac-online.sh dest=~/www/batch/upgrade-opac.sh
-
-    - name: upgrade online
-      shell: bash ~/www/batch/upgrade-opac.sh
-
