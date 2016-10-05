@@ -1,9 +1,9 @@
-moulins ansible_host=mediatheques.agglo-moulins.fr ansible_user=root
-yonne ansible_host=128.127.138.85 ansible_port=2222 ansible_user=root
-digne ansible_host=217.128.36.177 ansible_user=afi
-clichy ansible_host=80.11.251.207 ansible_port=2211 ansible_user=afi
-miop ansible_host=87.252.12.96 ansible_user=afi
-valence ansible_host=109.69.193.75 ansible_user=exploit
+moulins ansible_ssh_host=mediatheques.agglo-moulins.fr ansible_ssh_user=root
+yonne ansible_ssh_host=128.127.138.85 ansible_ssh_port=2222 ansible_ssh_user=root
+digne ansible_ssh_host=217.128.36.177 ansible_ssh_user=afi
+clichy ansible_ssh_host=80.11.251.207 ansible_ssh_port=2211 ansible_ssh_user=afi
+miop ansible_ssh_host=87.252.12.96 ansible_ssh_user=afi
+valence ansible_ssh_host=109.69.193.75 ansible_ssh_user=exploit
 bokeh-master
 
 [externs_root]
