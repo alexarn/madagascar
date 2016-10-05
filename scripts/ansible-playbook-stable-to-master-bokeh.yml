@@ -1,9 +1,0 @@
----
-- hosts: online
-  tasks:
-    - name: stable to master on online {{ directory }}
-      stat: path="~/www/{{ directory }}"
-      register: st
-    - shell: cd www/php && bash stable-to-master.sh ~/www/{{ directory }}
-      when: st.stat.exists
-    - debug: msg="~/www/{{ directory }} does not exist here"

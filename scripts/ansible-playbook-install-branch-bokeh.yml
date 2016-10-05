@@ -1,9 +1,0 @@
----
-- hosts: online
-  tasks:
-    - name: install branch {{ branch }} on online {{ directory }}
-      stat: path="~/www/{{ directory }}"
-      register: st
-    - shell: cd www/php && bash install-branch.sh {{ branch }} ~/www/{{ directory }}
-      when: st.stat.exists
-    - debug: msg="~/www/{{ directory }} does not exist here"

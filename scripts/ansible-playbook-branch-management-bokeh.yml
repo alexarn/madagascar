@@ -1,0 +1,16 @@
+---
+- hosts: online
+  gather_facts: no
+  vars: 
+    target_path: "~/www/{{ directory }}"
+  tasks:
+    - name: "detect target {{ target_path }}"
+      stat: path="{{ target_path }}"
+      register: st
+    - name: notify failure
+      fail: msg="{{ target_path }} does not exist here"
+      when: not st.stat.exists
+    - name: "{{ branch_command }} in {{ target_path }}"
+      shell: "cd www/php && bash {{ branch_command }} {{ target_path }}"
+#      debug: msg="would have done cd www/php && bash {{ branch_command }} {{ target_path }}"
+      when: st.stat.exists

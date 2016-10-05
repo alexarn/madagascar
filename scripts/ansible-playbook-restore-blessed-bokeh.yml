@@ -1,9 +1,0 @@
----
-- hosts: online
-  tasks:
-    - name: restore blessed on online {{ directory }}
-      stat: path="~/www/{{ directory }}"
-      register: st
-    - shell: cd www/php && bash restore-blessed.sh ~/www/{{ directory }}
-      when: st.stat.exists
-    - debug: msg="~/www/{{ directory }} does not exist here"
