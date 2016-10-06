@@ -9,4 +9,4 @@ fi
 BRANCH=$1
 CLIENT_DIR=$2
 
-ansible-playbook -vvvv scripts/ansible-playbook-install-branch-bokeh.yml --extra-vars "branch=$BRANCH directory=$CLIENT_DIR"
+ansible-playbook -vvvv scripts/ansible-playbook-branch-management-bokeh.yml --extra-vars "{'directory':'$CLIENT_DIR','branch_command':'install-branch.sh $BRANCH'}"
