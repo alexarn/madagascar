@@ -14,7 +14,7 @@
       shell: bash /root/upgrade-opac.sh
 
 
-- hosts: externs_afi,externs_exploit
+- hosts: externs_afi:externs_exploit
   tasks:
     - name: externs simple
       shell: bash upgrade-opac.sh
