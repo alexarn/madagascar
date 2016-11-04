@@ -2,19 +2,19 @@
 
 dbname=`echo $1|xargs|tr -d '\r'`
 
-mysql -uroot -proot -e "drop database if exists \`$dbname\`; create database \`$dbname\`;"
 wget -O /tmp/${dbname}.sql.gz http://172.16.77.252/backup/MySQL/Opac3/Daily/`date +%d-%m-%Y`/${dbname}_`date +%Y%m%d`_OPAC3_MyISAM_backup.sql.gz
 
 if [[ `echo "$?"` == 0 ]]; then 
+    mysql -uroot -proot -e "drop database if exists \`$dbname\`; create database \`$dbname\`;"
     zcat /tmp/${dbname}.sql.gz |mysql -uroot -proot ${dbname} 
     echo "dump from today completed"
     exit 0
 fi
 
-
 wget -O /tmp/${dbname}.sql.gz http://172.16.77.252/backup/MySQL/Opac3/Daily/`date --date="yesterday" +%d-%m-%Y`/${dbname}_`date --date="yesterday" +%Y%m%d`_OPAC3_MyISAM_backup.sql.gz
 
 if [[ `echo "$?"` == 0 ]]; then 
+    mysql -uroot -proot -e "drop database if exists \`$dbname\`; create database \`$dbname\`;"
     zcat /tmp/${dbname}.sql.gz |mysql -uroot -proot ${dbname} 
     echo "dump from yesterday completed"
     exit 0
