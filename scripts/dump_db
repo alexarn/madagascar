@@ -2,7 +2,7 @@
 
 dbname=`echo $1|xargs|tr -d '\r'`
 
-wget -O /tmp/${dbname}.sql.gz http://172.16.77.252/backup/MySQL/Opac3/Daily/`date +%d-%m-%Y`/${dbname}_`date +%Y%m%d`_OPAC3_MyISAM_backup.sql.gz
+wget -O /tmp/${dbname}.sql.gz http://backup.afi-sa.net/backup/MySQL/Opac3/Daily/`date +%d-%m-%Y`/${dbname}_`date +%Y%m%d`_OPAC3_MyISAM_backup.sql.gz
 
 if [[ `echo "$?"` == 0 ]]; then 
     mysql -uroot -proot -e "drop database if exists \`$dbname\`; create database \`$dbname\`;"
@@ -11,7 +11,7 @@ if [[ `echo "$?"` == 0 ]]; then
     exit 0
 fi
 
-wget -O /tmp/${dbname}.sql.gz http://172.16.77.252/backup/MySQL/Opac3/Daily/`date --date="yesterday" +%d-%m-%Y`/${dbname}_`date --date="yesterday" +%Y%m%d`_OPAC3_MyISAM_backup.sql.gz
+wget -O /tmp/${dbname}.sql.gz http://backup.afi-sa.net/backup/MySQL/Opac3/Daily/`date --date="yesterday" +%d-%m-%Y`/${dbname}_`date --date="yesterday" +%Y%m%d`_OPAC3_MyISAM_backup.sql.gz
 
 if [[ `echo "$?"` == 0 ]]; then 
     mysql -uroot -proot -e "drop database if exists \`$dbname\`; create database \`$dbname\`;"
@@ -22,4 +22,3 @@ fi
 
 echo "Could not dump"
 exit 1
-
