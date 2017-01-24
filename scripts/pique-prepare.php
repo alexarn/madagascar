@@ -1,5 +1,5 @@
 <?php
-require 'console.php';
+require_once 'console.php';
 
 
 function removeRandomKioskConfig($config) {
