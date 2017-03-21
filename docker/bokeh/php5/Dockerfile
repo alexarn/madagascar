@@ -26,7 +26,7 @@ RUN sed -i '/fr_FR\.UTF/s/^# //g' /etc/locale.gen \
     && locale-gen
 ENV LANG fr_FR.UTF-8
 
-RUN curl --location --output /usr/local/bin/phpunit https://phar.phpunit.de/phpunit.phar \
+RUN curl --location --output /usr/local/bin/phpunit https://phar.phpunit.de/phpunit-5.7.9.phar \
     && chmod +x /usr/local/bin/phpunit
 
 RUN pecl install imagick-3.4.3RC1 \
