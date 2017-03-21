@@ -8,4 +8,4 @@ fi
 
 CLIENT_DIR=$1
 
-ansible-playbook -vvvv scripts/ansible-playbook-branch-management-bokeh.yml --extra-vars "{'directory':'$CLIENT_DIR','branch_command':'restore-blessed.sh'}"
+ansible-playbook -vvvv scripts/ansible-playbook-branch-management-bokeh.yml --extra-vars "directory='$CLIENT_DIR' branch_command='restore-blessed.sh'"
