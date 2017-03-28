@@ -1,4 +1,4 @@
-FROM php:7
+FROM php:7.0
 
 RUN apt-get update -yqq \
     && apt-get install locales \
