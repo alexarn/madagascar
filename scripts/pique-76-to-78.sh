@@ -7,7 +7,7 @@ fi
 
 exec_path="$( cd "$( dirname "$0" )" && pwd )"
 client_dir="$( cd $1 && pwd )"
-client_basename = "$( basename $client_dir )"
+client_basename="$( basename $client_dir )"
 deploy_dir="/home/webmaster/www/php/"
 pique_dir="/home/webmaster/www/htdocs-local/pique/"
 client_basename="$( basename "$client_dir" )"
@@ -28,12 +28,14 @@ function piqueOnStable() {
 
     echo "Prepare for pique"
     cd $client_dir
+    ln -s /home/webmaster/www/php/branches/WIP/scripts/inject_bokeh_url.php scripts/
     php scripts/inject_bokeh_url.php $client_basename
     php $exec_path/pique-prepare.php
 
     echo "Pique for stable: $bokeh_url"
     cd $pique_dir
     php checkByUrls.php $bokeh_url
+    rm "$client_dir/scripts/inject_bokeh_url.php"
 }
 
 
