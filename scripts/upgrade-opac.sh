@@ -13,7 +13,7 @@ do
 done
 
 
-directories=`find  -P ~/www/htdocs/  -maxdepth 3 -type d -path "*/skins/*/"`
+directories=`find  -P ~/www/htdocs/  -maxdepth 3 -type d -path "*/skins/*"`
 for dir in $directories
 do
 	echo "update skin for: $dir"
