@@ -7,6 +7,7 @@ clichy ansible_ssh_host=109.190.135.247 ansible_ssh_port=2211 ansible_ssh_user=a
 
 miop ansible_ssh_host=87.252.12.96 ansible_ssh_user=afi
 valence ansible_ssh_host=109.69.193.75 ansible_ssh_user=exploit
+mulhouse
 bokeh-master
 
 [externs_root]
@@ -20,6 +21,7 @@ miop
 
 [externs_exploit]
 valence
+mulhouse
 
 [online]
 bokeh-master
