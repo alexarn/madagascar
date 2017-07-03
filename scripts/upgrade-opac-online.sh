@@ -4,10 +4,10 @@ cd ~/www/php/
 git pull --rebase
 ./install.sh
 
-echo "archiving stable"
-tar -czf ~/www/htdocs-mutu/bokeh-library-portal.org/userfiles/bokeh-stable.tgz --exclude-vcs --exclude=*/local.php --exclude=*/config.{php,ini} --totals bokeh-stable
-echo "archiving development"
-tar -czf ~/www/htdocs-mutu/bokeh-library-portal.org/userfiles/bokeh-development.tgz --exclude-vcs --exclude=*/local.php --exclude=*/config.{php,ini} --totals bokeh-development
+#echo "archiving stable"
+#tar -czf ~/www/htdocs-mutu/bokeh-library-portal.org/userfiles/bokeh-stable.tgz --exclude-vcs --exclude=*/local.php --exclude=*/config.{php,ini} --totals bokeh-stable
+#echo "archiving development"
+#tar -czf ~/www/htdocs-mutu/bokeh-library-portal.org/userfiles/bokeh-development.tgz --exclude-vcs --exclude=*/local.php --exclude=*/config.{php,ini} --totals bokeh-development
 
 ### Màj des Bokeh dédiés ###
 #
