@@ -3,7 +3,7 @@ yonne ansible_ssh_host=128.127.138.85 ansible_ssh_port=2222 ansible_ssh_user=roo
 digne ansible_ssh_host=90.85.156.129 ansible_ssh_user=afi
 
 #avant: clichy ansible_ssh_host=80.11.251.207 ansible_ssh_port=2211 ansible_ssh_user=afi
-clichy ansible_ssh_host=109.190.135.247 ansible_ssh_port=2211 ansible_ssh_user=afi
+clichy ansible_ssh_host=194.2.87.100 ansible_ssh_port=2211 ansible_ssh_user=afi
 
 miop ansible_ssh_host=87.252.12.96 ansible_ssh_user=afi
 valence ansible_ssh_host=109.69.193.75 ansible_ssh_user=exploit
