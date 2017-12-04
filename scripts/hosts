@@ -22,6 +22,7 @@ miop
 [externs_exploit]
 valence
 mulhouse
+bokeh-chambery
 
 [online]
 bokeh-master
