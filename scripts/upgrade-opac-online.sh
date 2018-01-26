@@ -2,7 +2,8 @@
 
 cd ~/www/php/
 git pull --rebase
-./install.sh
+# source to stop execution if install.sh exits with error
+source ./install.sh
 
 #echo "archiving stable"
 #tar -czf ~/www/htdocs-mutu/bokeh-library-portal.org/userfiles/bokeh-stable.tgz --exclude-vcs --exclude=*/local.php --exclude=*/config.{php,ini} --totals bokeh-stable
