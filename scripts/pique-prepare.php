@@ -46,3 +46,5 @@ foreach(Class_IntBib::findAll() as $int_bib){
 
 Class_AdminVar::set('CNIL_CONSENT_ENABLE', 0);
 Class_AdminVar::set('CACHE_ACTIF', 0);
+Class_AdminVar::set('FORCE_HTTPS', 0);
+Class_AdminVar::set('AFFICHER_DISPONIBILITE_SUR_RECHERCHE', 0);
