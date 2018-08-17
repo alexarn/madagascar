@@ -7,7 +7,7 @@ clichy ansible_ssh_host=194.2.87.100 ansible_ssh_port=2211 ansible_ssh_user=afi
 
 miop ansible_ssh_host=87.252.12.96 ansible_ssh_user=afi
 valence ansible_ssh_host=109.69.193.75 ansible_ssh_user=exploit
-#mulhouse désactivé car migrations ressources numériques impossibles (patch 346)
+mulhouse
 bokeh-master
 
 [externs_root]
