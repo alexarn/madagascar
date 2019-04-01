@@ -4,7 +4,8 @@ dbname=`echo $1|xargs|tr -d '\r'`
 
 wget -O /tmp/${dbname}.sql.gz http://backup.afi-sa.net/MySQL/Opac3/Daily/`date +%d-%m-%Y`/${dbname}_`date +%Y%m%d`_OPAC3_MyISAM_backup.sql.gz
 
-if [[ `echo "$?"` == 0 ]]; then 
+if [[ `echo "$?"` == 0 ]]; then
+    chmod 777 /tmp/${dbname}.sql.gz
     mysql -uroot -proot -e "drop database if exists \`$dbname\`; create database \`$dbname\`;"
     zcat /tmp/${dbname}.sql.gz |mysql -uroot -proot ${dbname} 
     echo "dump from today completed"
@@ -13,7 +14,8 @@ fi
 
 wget -O /tmp/${dbname}.sql.gz http://backup.afi-sa.net/MySQL/Opac3/Daily/`date --date="yesterday" +%d-%m-%Y`/${dbname}_`date --date="yesterday" +%Y%m%d`_OPAC3_MyISAM_backup.sql.gz
 
-if [[ `echo "$?"` == 0 ]]; then 
+if [[ `echo "$?"` == 0 ]]; then
+    chmod 777 /tmp/${dbname}.sql.gz
     mysql -uroot -proot -e "drop database if exists \`$dbname\`; create database \`$dbname\`;"
     zcat /tmp/${dbname}.sql.gz |mysql -uroot -proot ${dbname} 
     echo "dump from yesterday completed"
@@ -22,7 +24,8 @@ fi
 
 wget -O /tmp/${dbname}.sql.gz http://backup.afi-sa.net/MySQL/Opac3/Monthly/`date --date="yesterday" +%d-%m-%Y`/${dbname}_`date --date="yesterday" +%Y%m%d`_OPAC3_MyISAM_backup.sql.gz
 
-if [[ `echo "$?"` == 0 ]]; then 
+if [[ `echo "$?"` == 0 ]]; then
+    chmod 777 /tmp/${dbname}.sql.gz
     mysql -uroot -proot -e "drop database if exists \`$dbname\`; create database \`$dbname\`;"
     zcat /tmp/${dbname}.sql.gz |mysql -uroot -proot ${dbname} 
     echo "dump from yesterday completed"
