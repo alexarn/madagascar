@@ -6,6 +6,7 @@ digne ansible_ssh_host=90.85.156.129 ansible_ssh_user=afi
 clichy ansible_ssh_host=194.2.87.100 ansible_ssh_port=2211 ansible_ssh_user=afi
 
 miop ansible_ssh_host=87.252.12.96 ansible_ssh_user=afi
+new-miop ansible_ssh_host=87.252.5.74 ansible_ssh_user=webmaster
 valence ansible_ssh_host=109.69.193.75 ansible_ssh_user=exploit
 mulhouse
 bokeh-master
@@ -18,6 +19,7 @@ yonne
 digne
 clichy
 miop
+new-miop
 
 [externs_exploit]
 valence
