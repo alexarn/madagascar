@@ -1,0 +1,11 @@
+#!/bin/sh
+FILE=/tmp/madagascar
+
+tmux -S $FILE has-session 2>/dev/null
+if [ $? != 0 ]; then
+    tmux -S $FILE
+    chmod 777 $FILE
+    exit 0
+fi
+
+tmux -S $FILE attach
