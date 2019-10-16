@@ -8,4 +8,4 @@ if [ $? != 0 ]; then
     exit 0
 fi
 
-tmux -S $FILE attach
+tmux -S $FILE new -A -s $(whoami)
