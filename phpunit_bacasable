@@ -1,0 +1,44 @@
+#!/bin/bash
+
+ARGUMENT_LIST=(
+    "filter"
+)
+
+
+# read arguments
+opts=$(getopt \
+    --longoptions "$(printf "%s:," "${ARGUMENT_LIST[@]}")" \
+    --name "$(basename "$0")" \
+    --options "c:" \
+    -- "$@"
+    )
+
+eval set --$opts
+
+while [[ $# -gt 0 ]]; do
+    case "$1" in
+        --filter)
+            filter=$2
+            shift 2
+            ;;
+
+        -c)
+            configFile=$2
+            shift 2
+            ;;
+
+        *)
+            className=$2
+	    fileName=$3
+	    #shift 2
+	    break
+            ;;
+    esac
+done
+
+me=$(whoami)
+fileName=${fileName/opt\/workplace/home\/webmaster}
+command="docker exec ${me}-bokeh-php-71-dev phpunit -c /home/webmaster/${me}/php/bokeh/tests/phpunit.xml --filter $filter $className $fileName"
+
+echo -e "\n$(fortune fr)\n\n${command}\n\n"
+eval $command
