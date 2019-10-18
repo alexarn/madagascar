@@ -18,12 +18,13 @@ eval set --$opts
 while [[ $# -gt 0 ]]; do
     case "$1" in
         --filter)
-            filter=$2
+            filter="--filter $2"
             shift 2
             ;;
 
         -c)
-            configFile=$2
+	    configFile=${2/opt\/workplace/home\/webmaster}
+            configOption="-c $configFile"
             shift 2
             ;;
 
@@ -38,7 +39,11 @@ done
 
 me=$(whoami)
 fileName=${fileName/opt\/workplace/home\/webmaster}
-command="docker exec ${me}-bokeh-php-71-dev phpunit -c /home/webmaster/${me}/php/bokeh/tests/phpunit.xml --filter $filter $className $fileName"
+pwd=$(pwd)
+place_to_be=${pwd/opt\/workplace/home\/webmaster}
+
+command="docker exec -w $place_to_be --env XDEBUG_CONFIG=\"${XDEBUG_CONFIG}\" ${me}-bokeh-php-71-dev su webmaster -c \"phpunit $configOption $filter $className $fileName\""
 
 echo -e "\n$(fortune fr)\n\n${command}\n\n"
-eval $command
+eval $command | sed  "s/home\/webmaster/opt\/workplace/g"
+
