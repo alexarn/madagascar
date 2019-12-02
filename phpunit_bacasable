@@ -1,13 +1,16 @@
 #!/bin/bash
 
 ARGUMENT_LIST=(
-    "filter"
+    "filter:"
+    "exclude-group:"
+    "testdox"
+    "testdox-text:"
 )
 
 
 # read arguments
 opts=$(getopt \
-    --longoptions "$(printf "%s:," "${ARGUMENT_LIST[@]}")" \
+    --longoptions "$(printf "%s," "${ARGUMENT_LIST[@]}")" \
     --name "$(basename "$0")" \
     --options "c:" \
     -- "$@"
@@ -22,6 +25,21 @@ while [[ $# -gt 0 ]]; do
             shift 2
             ;;
 
+	--testdox)
+	    testdox="--testdox"
+	    shift
+	    ;;
+
+	--testdox-text)
+	    testdox="--testdox-text $2"
+	    shift 2
+	    ;;
+
+	--exclude-group)
+	    excludeGroup="--exclude-group $2"
+	    shift 2
+	    ;;
+	
         -c)
 	    configFile=${2/opt\/workplace/home\/webmaster}
             configOption="-c $configFile"
@@ -42,7 +60,7 @@ fileName=${fileName/opt\/workplace/home\/webmaster}
 pwd=$(pwd)
 place_to_be=${pwd/opt\/workplace/home\/webmaster}
 
-command="docker exec -w $place_to_be --env XDEBUG_CONFIG=\"${XDEBUG_CONFIG}\" ${me}-bokeh-php-71-dev su webmaster -c \"phpunit $configOption $filter $className $fileName\""
+command="docker exec -w $place_to_be --env XDEBUG_CONFIG=\"${XDEBUG_CONFIG}\" ${me}-bokeh-php-71-dev su webmaster -c \"phpunit $configOption $filter $testdox $excludeGroup $className $fileName\""
 
 echo -e "\n$(fortune fr)\n\n${command}\n\n"
 eval $command | sed  "s/home\/webmaster/opt\/workplace/g"
