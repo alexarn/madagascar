@@ -4,7 +4,7 @@ RUN apt-get update -yqq \
     && apt-get install locales \
                libfreetype6-dev \
                libjpeg62-turbo-dev \
-               libpng12-dev \
+               libpng-dev \
                libmcrypt-dev \
                imagemagick \
                libmagickwand-dev \
