@@ -20,13 +20,13 @@ do
         php php/upgrade_db.php
 done
 
-directories=$(find  -P ~/www/htdocs-dedi/ -maxdepth 3 -type d -path "*/skins/*")
-for dir in $directories
-do
-        echo "update skin for: $dir"
-        cd $dir;
-        git  pull --rebase;
-done
+# directories=$(find  -P ~/www/htdocs-dedi/ -maxdepth 3 -type d -path "*/skins/*")
+# for dir in $directories
+# do
+#         echo "update skin for: $dir"
+#         cd $dir;
+#         git  pull --rebase;
+# done
 
 ### Màj des Bokeh mutus ###
 #
@@ -38,12 +38,12 @@ do
         php php/upgrade_db.php
 done
 
-directories=$(find  -P ~/www/htdocs-mutu/ -maxdepth 3 -type d -path "*/skins/*")
-for dir in $directories
-do
-        echo "update skin for: $dir"
-        cd $dir;
-        git  pull --rebase;
-done
+# directories=$(find  -P ~/www/htdocs-mutu/ -maxdepth 3 -type d -path "*/skins/*")
+# for dir in $directories
+# do
+#         echo "update skin for: $dir"
+#         cd $dir;
+#         git  pull --rebase;
+# done
 
 sudo ansible-playbook /etc/ansible/playbooks/restart_bokeh_services.yml
