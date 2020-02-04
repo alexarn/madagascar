@@ -16,7 +16,7 @@ bokeh-master
 
 [externs_root]
 moulins
-yonne
+#yonne
 
 [externs_afi]
 digne
