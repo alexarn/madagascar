@@ -46,4 +46,4 @@ done
 #         git  pull --rebase;
 # done
 
-sudo ansible-playbook /etc/ansible/playbooks/restart_bokeh_services.yml
+#sudo ansible-playbook /etc/ansible/playbooks/restart_bokeh_services.yml
