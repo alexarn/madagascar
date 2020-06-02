@@ -15,7 +15,7 @@ RUN apt-get update -yqq \
                mysql-client \
                git -yqq
 
-RUN sed -i '/mozilla\/AddTrust_External_Root.crt/!mozilla\/AddTrust_External_Root.crt' /etc/ca-certificates.conf \
+RUN sed -i 's/mozilla\/AddTrust_External_Root.crt/!mozilla\/AddTrust_External_Root.crt/' /etc/ca-certificates.conf \
     && update-ca-certificates
     
 RUN mkdir /tmp/phantomjs \
