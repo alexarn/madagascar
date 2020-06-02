@@ -2,6 +2,7 @@ FROM php:7.0
 
 RUN apt-get update -yqq \
     && apt-get install locales \
+               ca-certificates \
                libfreetype6-dev \
                libjpeg62-turbo-dev \
                libpng-dev \
@@ -14,6 +15,9 @@ RUN apt-get update -yqq \
                mysql-client \
                git -yqq
 
+RUN sed -i '/mozilla\/AddTrust_External_Root.crt/!mozilla\/AddTrust_External_Root.crt' /etc/ca-certificates.conf \
+    && update-ca-certificates
+    
 RUN mkdir /tmp/phantomjs \
     && curl -L https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-2.1.1-linux-x86_64.tar.bz2 \
         | tar -xj --strip-components=1 -C /tmp/phantomjs \
