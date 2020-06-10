@@ -18,3 +18,9 @@
   tasks:
     - name: externs simple
       shell: bash upgrade-opac.sh
+
+
+- hosts: infocom
+  tasks:
+    - name: infocom
+      shell: bash bokeh/scripts/upgrade-opac.sh
