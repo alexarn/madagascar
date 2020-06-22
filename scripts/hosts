@@ -33,6 +33,10 @@ bokeh-chambery
 bokeh-master
 
 
-[infocom]
+[dockerized]
 infocom-test-bokeh
 infocom-prod-bokeh
+
+[harmony]
+insa-lyon
+grand-quevilly

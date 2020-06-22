@@ -24,3 +24,9 @@
   tasks:
     - name: infocom
       shell: bash bokeh/scripts/upgrade-opac.sh
+
+
+- hosts: harmony
+  tasks:
+    - name: harmony
+      shell: bash www/scripts/upgrade-opac.sh
