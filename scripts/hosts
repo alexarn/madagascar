@@ -1,6 +1,5 @@
 moulins ansible_ssh_host=mediatheques.agglo-moulins.fr ansible_ssh_user=root
-# en attente régularisation contrat maintenance
-# yonne ansible_ssh_host=95.141.100.148 ansible_ssh_port=22110 ansible_ssh_user=root
+yonne ansible_ssh_host=95.141.100.148 ansible_ssh_port=22110 ansible_ssh_user=root
 digne ansible_ssh_host=90.85.156.129 ansible_ssh_user=afi
 
 #avant: clichy ansible_ssh_host=80.11.251.207 ansible_ssh_port=2211 ansible_ssh_user=afi
