@@ -22,7 +22,7 @@
 
 - hosts: dockerized
   tasks:
-    - name: infocom
+    - name: dockerized
       shell: bash bokeh/scripts/upgrade-opac.sh
 
 

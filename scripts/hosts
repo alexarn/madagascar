@@ -40,6 +40,8 @@ bokeh-master
 [dockerized]
 infocom-test-bokeh
 infocom-prod-bokeh
+beziers
+
 
 [harmony]
 insa-lyon
