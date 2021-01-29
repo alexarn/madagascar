@@ -58,7 +58,7 @@ RUN docker-php-ext-configure zip \
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install -j$(nproc) gd
 
-RUN curl --location --output /usr/local/bin/phpunit https://phar.phpunit.de/phpunit-5.7.27.phar \
+RUN curl --location --output /usr/local/bin/phpunit https://phar.phpunit.de/phpunit-8.5.9.phar \
     && chmod +x /usr/local/bin/phpunit
 
 RUN cd /usr/local/share \
