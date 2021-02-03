@@ -40,7 +40,6 @@ bokeh-master
 [dockerized]
 infocom-test-bokeh
 infocom-prod-bokeh
-beziers
 
 
 [harmony]
@@ -48,3 +47,5 @@ insa-lyon
 grand-quevilly
 new-valence
 insep
+beziers
+bokeh-vitre
