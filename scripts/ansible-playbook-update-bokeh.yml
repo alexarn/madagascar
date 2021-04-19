@@ -1,30 +1,23 @@
 ---
 - hosts: online
   tasks:
-    - name: copy upgrade-opac-online.sh
-      copy: src=upgrade-opac-online.sh dest=~/www/batch/upgrade-opac.sh
-
     - name: upgrade online
-      shell: bash ~/www/batch/upgrade-opac.sh
-
+      shell: bash www/scripts/upgrade-opac.sh
 
 - hosts: externs_root
   tasks:
     - name: externs under root
       shell: bash /root/upgrade-opac.sh
 
-
 - hosts: externs_afi:externs_exploit
   tasks:
     - name: externs simple
       shell: bash upgrade-opac.sh
 
-
 - hosts: dockerized
   tasks:
     - name: dockerized
       shell: bash bokeh/scripts/upgrade-opac.sh
-
 
 - hosts: harmony
   tasks:
