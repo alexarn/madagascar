@@ -59,8 +59,9 @@ me=$(whoami)
 fileName=${fileName/opt\/workplace/home\/webmaster}
 pwd=$(pwd)
 place_to_be=${pwd/opt\/workplace/home\/webmaster}
+container=$(docker ps|grep "$me-bokeh-php"|awk '{print $1}')
 
-command="docker exec -w $place_to_be --env XDEBUG_CONFIG=\"${XDEBUG_CONFIG}\" ${me}-bokeh-php-71-dev su webmaster -c \"phpunit $configOption $filter $testdox $excludeGroup $className $fileName\""
+command="docker exec -w $place_to_be --env XDEBUG_CONFIG=\"${XDEBUG_CONFIG}\" $container su webmaster -c \"phpunit $configOption $filter $testdox $excludeGroup $className $fileName\""
 
 echo -e "\n$(fortune fr)\n\n${command}\n\n"
 eval $command | sed  "s/home\/webmaster/opt\/workplace/g"
