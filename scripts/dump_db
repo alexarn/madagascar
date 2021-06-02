@@ -1,36 +1,41 @@
 #!/bin/bash
-
 dbname=`echo $1|xargs|tr -d '\r'`
+password=$2
+today=`date +%Y-%m-%d`
+target_path=/tmp/${dbname}.sql.gz
 
-wget -O /tmp/${dbname}.sql.gz http://backup.afi-sa.net/MySQL/Opac3/Daily/`date +%d-%m-%Y`/${dbname}_`date +%Y%m%d`_OPAC3_MyISAM_backup.sql.gz
+echo $today
+echo $target_path
 
-if [[ `echo "$?"` == 0 ]]; then
-    chmod 777 /tmp/${dbname}.sql.gz
-    mysql -uroot -proot -e "drop database if exists \`$dbname\`; create database \`$dbname\`;"
-    zcat /tmp/${dbname}.sql.gz |mysql -uroot -proot ${dbname} 
-    echo "dump from today completed"
-    exit 0
-fi
+function load_dump() {
+    chmod ugo+rw $target_path
+    mysql -uroot -p$password -e "drop database if exists \`$dbname\`; create database \`$dbname\`;"
+    zcat $target_path |mysql -uroot -p$password ${dbname} 
+}
 
-wget -O /tmp/${dbname}.sql.gz http://backup.afi-sa.net/MySQL/Opac3/Daily/`date --date="yesterday" +%d-%m-%Y`/${dbname}_`date --date="yesterday" +%Y%m%d`_OPAC3_MyISAM_backup.sql.gz
 
-if [[ `echo "$?"` == 0 ]]; then
-    chmod 777 /tmp/${dbname}.sql.gz
-    mysql -uroot -proot -e "drop database if exists \`$dbname\`; create database \`$dbname\`;"
-    zcat /tmp/${dbname}.sql.gz |mysql -uroot -proot ${dbname} 
-    echo "dump from yesterday completed"
-    exit 0
-fi
+function dump_day() {
+    wget -O $target_path http://backup.afi-sa.net/MySQL/Opac3/Daily/`date --date="$1" +%d-%m-%Y`/${dbname}_`date --date="$1" +%Y%m%d`_OPAC3_MyISAM_backup.sql.gz
+    if [[ `echo "$?"` == 0 ]]; then
+       load_dump $1
+       echo "dump from $1 completed"
+       exit 0
+    fi
+    
+    wget -O $target_path http://backup.afi-sa.net/MySQL/Opac3/Daily/`date --date="$1" +%d-%m-%Y`/${dbname}_`date --date="$1 -1 day" +%Y%m%d`_OPAC3_MyISAM_backup.sql.gz
+    if [[ `echo "$?"` == 0 ]]; then
+       load_dump $1
+       echo "dump from $1 completed"
+       exit 0
+    fi
+}
 
-wget -O /tmp/${dbname}.sql.gz http://backup.afi-sa.net/MySQL/Opac3/Monthly/`date --date="yesterday" +%d-%m-%Y`/${dbname}_`date --date="yesterday" +%Y%m%d`_OPAC3_MyISAM_backup.sql.gz
 
-if [[ `echo "$?"` == 0 ]]; then
-    chmod 777 /tmp/${dbname}.sql.gz
-    mysql -uroot -proot -e "drop database if exists \`$dbname\`; create database \`$dbname\`;"
-    zcat /tmp/${dbname}.sql.gz |mysql -uroot -proot ${dbname} 
-    echo "dump from yesterday completed"
-    exit 0
-fi
+dump_day $today
+dump_day `date --date="$today -1 day" +%Y-%m-%d`
+dump_day `date --date="$today -2 days" +%Y-%m-%d`
+dump_day `date --date="$today -3 days" +%Y-%m-%d`
 
 echo "Could not dump"
 exit 1
+
