@@ -3,7 +3,6 @@ yonne ansible_ssh_host=95.141.100.148 ansible_ssh_port=22110 ansible_ssh_user=ro
 yonne-new ansible_ssh_host=95.141.100.148 ansible_ssh_port=22114 ansible_ssh_user=root
 digne ansible_ssh_host=90.85.156.129 ansible_ssh_user=afi
 clichy ansible_ssh_host=85.112.198.83 ansible_ssh_port=2211 ansible_ssh_user=afi
-valence ansible_ssh_host=109.69.193.75 ansible_ssh_user=exploit
 new-valence ansible_ssh_host=109.69.193.154 ansible_ssh_user=webmaster
 insep ansible_ssh_host=37.58.254.19 ansible_ssh_user=webmaster
 sevran ansible_ssh_host=srv-bokeh.sevran.fr ansible_ssh_user=webmaster
@@ -25,7 +24,6 @@ sevran
 
 
 [externs_exploit]
-valence
 mulhouse
 
 
