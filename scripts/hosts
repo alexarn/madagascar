@@ -12,19 +12,19 @@ bokeh-mutu
 bokeh-dedi
 
 [externs_root]
-# moulins  / en attente php5.6
-# yonne    / en attente php5.6 / en cours de migration
+# moulins  / en attente php7.4
+yonne
 
 
 
 [externs_afi]
 digne
 # clichy / en attente php5.6
-sevran
+# sevran / en attente php7.4
 
 
 [externs_exploit]
-mulhouse
+# mulhouse / en attente php 7.4
 
 
 [online]
@@ -38,11 +38,11 @@ infocom-prod-bokeh
 
 
 [harmony]
-insa-lyon
+# insa-lyon / en attente php 7.4
 grand-quevilly
 new-valence
 insep
-beziers
+# beziers / mise à jour par cron
 bokeh-vitre
 bokeh-digne
 yonne-new
