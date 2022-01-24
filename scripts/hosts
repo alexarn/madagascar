@@ -1,6 +1,5 @@
 moulins ansible_ssh_host=mediatheques.agglo-moulins.fr ansible_ssh_user=root
-yonne ansible_ssh_host=95.141.100.148 ansible_ssh_port=22110 ansible_ssh_user=root
-yonne-new ansible_ssh_host=95.141.100.148 ansible_ssh_port=22114 ansible_ssh_user=root
+yonne-new ansible_ssh_host=95.141.100.148 ansible_ssh_port=22114 ansible_ssh_user=webmaster
 digne ansible_ssh_host=90.85.156.129 ansible_ssh_user=afi
 clichy ansible_ssh_host=85.112.198.83 ansible_ssh_port=2211 ansible_ssh_user=afi
 new-valence ansible_ssh_host=109.69.193.154 ansible_ssh_user=webmaster
@@ -13,14 +12,12 @@ bokeh-dedi
 
 [externs_root]
 # moulins  / en attente php7.4
-yonne
-
 
 
 [externs_afi]
 digne
-# clichy / en attente php5.6
-# sevran / en attente php7.4
+# clichy / en attente php7.4
+sevran
 
 
 [externs_exploit]
