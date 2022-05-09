@@ -59,6 +59,17 @@ RUN curl --location --output /usr/local/bin/phpunit https://phar.phpunit.de/phpu
     && chmod +x /usr/local/bin/phpunit
 
 RUN cd /usr/local/share \
-    && wget https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-2.1.1-linux-x86_64.tar.bz2 \
-    && tar -xvjf phantomjs-2.1.1-linux-x86_64.tar.bz2 \
-    && ln -s /usr/local/share/phantomjs-2.1.1-linux-x86_64/bin/phantomjs /usr/local/bin
+    && wget -O chrome-linux.zip https://download-chromium.appspot.com/dl/Linux_x64?type=snapshots \
+    && unzip chrome-linux.zip \
+    && ln -s /usr/local/share/chrome-linux/chrome /usr/local/bin/chromium \
+    && apt-get install -yqq  libnss3 \
+			     libatk1.0-0 \
+			     libatk-bridge2.0-0 \
+			     libdrm2 \
+			     libxkbcommon0 \
+			     libxcomposite1 \
+			     libxdamage1 \
+			     libxrandr2 \
+			     libgbm1 \
+			     libasound2 \
+			     libxshmfence1
