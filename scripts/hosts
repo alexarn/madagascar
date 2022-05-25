@@ -35,7 +35,7 @@ infocom-prod-bokeh
 
 
 [harmony]
-insa-lyon
+#insa-lyon ils sont sur une branche bokeh_sup
 grand-quevilly
 new-valence
 insep
