@@ -84,3 +84,6 @@ RUN cd /usr/local/share \
 			     libgbm1 \
 			     libasound2 \
 			     libxshmfence1
+RUN useradd -ms /bin/bash webmaster
+USER webmaster
+WORKDIR /home/webmaster
