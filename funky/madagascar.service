@@ -1,0 +1,16 @@
+[Unit]
+Description=Madagascar
+After=network-online.target
+
+[Service]
+Type=forking
+User=tmux
+Group=tmux
+UMask=057
+
+ExecStart=/opt/madagascar/funky/start-madagascar.sh
+ExecStop=/opt/madagascar/funky/stop-madagascar.sh
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

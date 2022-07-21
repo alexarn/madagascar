@@ -1,0 +1,3 @@
+#!/bin/sh
+FILE=/var/tmux/madagascar
+tmux -S $FILE new -A -s $(whoami)
