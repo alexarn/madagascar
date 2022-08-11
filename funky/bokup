@@ -1,0 +1,73 @@
+#!/bin/sh
+set -e
+
+usage='Usage: bokup <project_name>
+ex: bokup archires
+'
+
+if [ $# -lt 1 ]; then
+  printf "$0: not enough arguments\n%s\n" "$usage" >&2
+  exit 2
+fi
+
+MARIADB_ROOT_PASSWORD="password"
+BOKEH_DATABASE="bokeh"
+PROJECT=$(whoami)_$1
+
+echo "=== Enter project $PROJECT ==="
+mkdir $PROJECT
+cd $PROJECT
+
+echo "=== Clone Bokeh/Docker ==="
+git clone git@git.afi-sa.net:afi/bokeh-docker.git
+
+echo "=== Clone Bokeh ==="
+git clone git@git.afi-sa.net:afi/opacce.git bokeh
+cd bokeh
+source ./update.sh
+
+
+echo "=== Launch composition ==="
+../bokeh-docker/bokeh-emacs/compose.sh -p $PROJECT up -d
+
+echo ""
+echo "=== Waiting MariaDb... ==="
+until docker exec $PROJECT-db-1 bash -c "echo 'select version();'|mysql -uroot -p$MARIADB_ROOT_PASSWORD"|grep version;
+  do sleep 0.2;
+done;
+
+echo ""
+echo "=== ... MariaDb up ==="
+
+
+echo ""
+echo "=== Writing configuration files ... ==="
+cp config.ini.default config.ini;
+sed -i "s/sgbd.config.host = localhost/sgbd.config.host = db/g" config.ini
+sed -i "s/sgbd.config.username =/sgbd.config.username = root/g" config.ini
+sed -i "s/sgbd.config.password =/sgbd.config.password = $MARIADB_ROOT_PASSWORD/g" config.ini
+sed -i "s/sgbd.config.dbname =/sgbd.config.dbname = $BOKEH_DATABASE/g" config.ini
+
+if [ ! -f local.php ]; then
+  echo "<?php define('MEMCACHED_ENABLE', true); define('MEMCACHED_HOST', 'cache'); define('MEMCACHED_PORT', '11211'); ini_set('xdebug.client_port', 9000); ini_set('xdebug.client_host', 'emacs');" > local.php;
+fi
+
+cd cosmogramme
+cp config.ref.php config.php
+sed -i "s/integration_server=localhost/integration_server=db/g" config.php
+sed -i "s/integration_user=root/integration_user=root/g" config.php
+sed -i "s/integration_pwd=root/integration_pwd=$MARIADB_ROOT_PASSWORD/g" config.php
+sed -i "s/integration_base=opac3/integration_base=$BOKEH_DATABASE/g" config.php
+cd ..
+
+echo "=== ... done ==="
+
+echo ""
+echo "=== Initializing default datas ... ==="
+docker exec $PROJECT-php-1 bash -c "mysql -uroot -p$MARIADB_ROOT_PASSWORD -h db $BOKEH_DATABASE -e 'create or replace database $BOKEH_DATABASE'"
+docker exec $PROJECT-php-1 bash -c "mysql -uroot -p$MARIADB_ROOT_PASSWORD -h db $BOKEH_DATABASE < scripts/opac2.sql"
+docker exec $PROJECT-php-1 bash -c "php -r \"require './console.php'; Class_AdminVar::set('NOM_DOMAINE', '$WEB_HOST');\""
+docker exec $PROJECT-php-1 bash -c "php scripts/upgrade_db.php"
+
+
+echo "=== ... done ==="
