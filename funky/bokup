@@ -10,6 +10,9 @@ if [ $# -lt 1 ]; then
   exit 2
 fi
 
+echo "=== Ensure .gitconfig file ==="
+touch ~/.gitconfig
+
 MARIADB_ROOT_PASSWORD="password"
 BOKEH_DATABASE="bokeh"
 PROJECT=$(whoami)_$1
