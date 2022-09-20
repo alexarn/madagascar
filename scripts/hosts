@@ -9,6 +9,7 @@ sevran ansible_ssh_host=srv-bokeh.sevran.fr ansible_ssh_user=webmaster
 mulhouse
 bokeh-mutu
 bokeh-dedi
+bokeh-archires
 
 [externs_root]
 # moulins  / en attente php7.4
