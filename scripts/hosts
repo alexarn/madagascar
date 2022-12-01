@@ -28,7 +28,7 @@ sevran
 [online]
 bokeh-mutu
 bokeh-dedi
-bokeh-archires
+#bokeh-archires
 
 
 [dockerized]
